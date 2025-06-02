@@ -23,7 +23,6 @@
 
 ## 💻 Tech Stack 
 
-- React
 - Springboot
 - PostgreSQL
 
