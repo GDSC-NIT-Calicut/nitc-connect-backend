@@ -6,6 +6,8 @@
 	<h4 align="center"> NITCConnect is a mobile-friendly web app that helps college students stay in the loop. It lets you follow interest groups you care about and get notified when there's new content, without the noise of traditional emails. Think of it as your personal campus bulletin board that only shows what matters to you, delivered right to your phone or laptop whenever there's something new. </h4>
 </p>
 
+#### **Instructions to build and run the app can be found [here](doc.md)**
+
 ---
 
 [![Visit Us](https://img.shields.io/badge/Our%20Instagram-purple)](https://www.instagram.com/gdsc_nitc/)
