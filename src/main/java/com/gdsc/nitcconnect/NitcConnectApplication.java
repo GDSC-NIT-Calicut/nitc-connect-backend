@@ -9,6 +9,7 @@ import java.util.Objects;
 @SpringBootApplication
 public class NitcConnectApplication {
 
+
     static {
         Dotenv dotenv = Dotenv.load();
         System.setProperty("DB_URL", Objects.requireNonNull(dotenv.get("DB_URL")));
@@ -18,6 +19,7 @@ public class NitcConnectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NitcConnectApplication.class, args);
+        System.out.println("Here");
     }
 
 }
