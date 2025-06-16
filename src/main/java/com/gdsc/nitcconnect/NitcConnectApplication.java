@@ -19,6 +19,7 @@ public class NitcConnectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NitcConnectApplication.class, args);
+
         System.out.println("Here");
     }
 

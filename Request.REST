@@ -1,0 +1,72 @@
+# POST http://localhost:8080/api/posts
+# Content-Type: application/json
+
+# {
+#   "igId": 1,
+#   "authorId": 123,
+#   "title": "My First Post",
+#   "content": "This is the content of my post"
+# }
+
+
+# GET http://localhost:8080/api/posts/interest-group/8
+
+# Notifications
+# POST http://localhost:8080/api/notifications
+# Content-Type: application/json
+
+# {
+#   "postId": 1,
+#   "message": "New comment on your post!"
+# }
+
+# DELETE http://localhost:8080/api/notifications/1
+
+# GET http://localhost:8080/api/notifications
+
+
+# GET http://localhost:8080/api/interest-groups
+
+
+# POST http://localhost:8080/api/interest-groups
+# Content-Type: application/json
+
+# {
+#   "name": "Web Development",
+#   "description": "A group for web developers to share knowledge and projects",
+#   "createdBy": 123
+# }
+
+
+# GET http://localhost:8080/api/interest-groups/search?name=web
+
+
+# GET http://localhost:8080/api/access-codes/validate/ABC123
+
+
+# POST http://localhost:8080/api/access-codes/create
+    # Content-Type: application/json
+
+# {
+#   "code": "ABC123",
+#     "igId": 3,
+#   "createdBy": 123,
+#   "expiryDate": "2026-12-31T23:59:59Z"
+# }
+
+
+#Subscribe
+# GET http://localhost:8080/api/subscriptions/interest-group/3/subscribers
+# Content-Type: application/json
+
+
+
+# Administrate
+# POST http://localhost:8080/api/administrate/assign?userId=1&igId=1
+
+# GET http://localhost:8080/api/administrate/check?userId=2&igId=1
+
+# GET http://localhost:8080/api/administrate/all
+
+GET http://localhost:8080/api/administrate/ig/2
+
