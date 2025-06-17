@@ -111,7 +111,7 @@ public class SubscribeService {
         Optional<Subscribe> subscription = subscribeRepository.findByUserIdAndIgId(userId, igId);
         if (subscription.isPresent()) {
             Subscribe sub = subscription.get();
-            if (sub.isMuted()) {
+            if (sub.isCurrentlyMuted()) {
                 sub.unmute();
             } else {
                 sub.mute();
