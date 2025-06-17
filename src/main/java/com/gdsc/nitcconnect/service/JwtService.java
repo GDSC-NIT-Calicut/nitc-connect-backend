@@ -25,7 +25,7 @@ public class JwtService {
 
     public String generateToken(String email) {
         System.out.println("Generating token for: " + email);
-        long EXPIRATION_TIME_MS = 24 * 60 * 60 * 1000; // 1 day
+        long EXPIRATION_TIME_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
         // long EXPIRATION_TIME_MS = 10 * 1000; // 10 sec
 
         return Jwts.builder()
