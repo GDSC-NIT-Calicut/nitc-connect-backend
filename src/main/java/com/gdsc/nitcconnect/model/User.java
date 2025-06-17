@@ -2,13 +2,13 @@ package com.gdsc.nitcconnect.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.*;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Add auto-generation
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     @Column(nullable = false)
@@ -17,8 +17,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String passwordHash;
+    @Column(nullable = false, unique = true)
+    private String googleId;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -27,10 +27,10 @@ public class User {
     public User() {}
 
     // Constructor
-    public User(String name, String email, String passwordHash) {
+    public User(String name, String email, String googleId) {
         this.name = name;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.googleId = googleId;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -59,12 +59,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getGoogleId() {
+        return googleId;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -81,6 +81,7 @@ public class User {
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", googleId='" + googleId + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }
