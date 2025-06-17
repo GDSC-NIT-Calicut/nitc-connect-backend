@@ -52,6 +52,7 @@ public interface UserNotificationRepository extends JpaRepository<UserNotificati
                              @Param("newStatus") UserNotification.Status newStatus);
 
     // Delete notifications older than specified date
+    @Transactional
     @Modifying
     @Query("DELETE FROM UserNotification un WHERE un.receivedAt < :cutoffDate")
     int deleteNotificationsOlderThan(@Param("cutoffDate") LocalDateTime cutoffDate);
