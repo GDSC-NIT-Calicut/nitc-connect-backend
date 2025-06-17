@@ -73,7 +73,7 @@ public class Subscribe {
     }
 
     // Utility methods
-    public boolean isMuted() {
+    public boolean isCurrentlyMuted() {
         return isMuted != null && isMuted;
     }
 
