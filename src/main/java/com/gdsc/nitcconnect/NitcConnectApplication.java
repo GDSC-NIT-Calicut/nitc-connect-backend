@@ -24,6 +24,7 @@ public class NitcConnectApplication {
     public static void main(String[] args) {
         System.out.println("JJWT qweqweqwversion: " + Jwts.class.getPackage().getImplementationVersion());
         SpringApplication.run(NitcConnectApplication.class, args);
+
         System.out.println("Here");
     }
 

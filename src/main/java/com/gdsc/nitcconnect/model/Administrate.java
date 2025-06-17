@@ -1,27 +1,61 @@
 package com.gdsc.nitcconnect.model;
 
 import jakarta.persistence.*;
-
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.*;
+
 @Entity
 @Table(name = "administrates")
-@IdClass(AdministrateId.class)   //for classes with composite primary key (check below for class implementation)
+@IdClass(AdministrateId.class)
 public class Administrate {
+
     @Id
     private Integer userId;
+
     @Id
     private Integer igId;
 
     private LocalDateTime assignedAt;
-    //TODO
+
+    // Constructors
+    public Administrate() {}
+
+    public Administrate(Integer userId, Integer igId, LocalDateTime assignedAt) {
+        this.userId = userId;
+        this.igId = igId;
+        this.assignedAt = assignedAt;
+    }
+
     // Getters and setters
-}
+    public Integer getUserId() {
+        return userId;
+    }
 
-class AdministrateId implements Serializable {
-    private Integer userId;
-    private Integer igId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-    // equals() and hashCode()
+    public Integer getIgId() {
+        return igId;
+    }
+
+    public void setIgId(Integer igId) {
+        this.igId = igId;
+    }
+
+    public LocalDateTime getAssignedAt() {
+        return assignedAt;
+    }
+
+    public void setAssignedAt(LocalDateTime assignedAt) {
+        this.assignedAt = assignedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Administrate{" +
+                "userId=" + userId +
+                ", igId=" + igId +
+                ", assignedAt=" + assignedAt +
+                '}';
+    }
 }
