@@ -38,6 +38,7 @@ public interface UserNotificationRepository extends JpaRepository<UserNotificati
 
     // Custom query to mark notification as read
     @Modifying
+    @Transactional
     @Query("UPDATE UserNotification un SET un.status = :status WHERE un.userId = :userId AND un.notificationId = :notificationId")
     int updateNotificationStatus(@Param("userId") Integer userId,
                                  @Param("notificationId") Integer notificationId,
