@@ -1,22 +1,44 @@
 package com.gdsc.nitcconnect.service;
 
+import com.gdsc.nitcconnect.dto.AdminDTO;
 import com.gdsc.nitcconnect.model.Administrate;
 import com.gdsc.nitcconnect.model.AdministrateId;
 import com.gdsc.nitcconnect.repository.AdministrateRepository;
+import com.gdsc.nitcconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class AdministrateService {
 
-    @Autowired
-    private AdministrateRepository administrateRepository;
+    private final AdministrateRepository administrateRepository;
+
+    private final UserRepository userRepository;
+
+    public AdministrateService(AdministrateRepository administrateRepository, UserRepository userRepository) {
+        this.administrateRepository = administrateRepository;
+        this.userRepository = userRepository;
+    }
+
+    // ✅ Return admin details with name & email
+    public List<AdminDTO> getAdminDTOsByInterestGroup(Integer igId) {
+        List<Administrate> admins = administrateRepository.findByIgId(igId);
+
+        return admins.stream()
+                .map(a -> userRepository.findById(a.getUserId())
+                        .map(user -> new AdminDTO(user.getUserId(), user.getName(), user.getEmail()))
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
 
     // Create new administration relationship
     public Administrate assignAdministrator(Integer userId, Integer igId) {

@@ -28,17 +28,15 @@ public class InterestGroupService {
                 ));
     }
 
-    public InterestGroup createInterestGroup(InterestGroup interestGroup) {
-        // Check if interest group with same name already exists
-        if (interestGroupRepository.existsByNameIgnoreCase(interestGroup.getName())) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    "Interest Group already exists"
-            );
+    public InterestGroup createInterestGroup(InterestGroup group, Integer currentUserId) {
+        if (interestGroupRepository.existsByNameIgnoreCase(group.getName())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Interest Group already exists");
         }
 
-        interestGroup.setCreatedAt(LocalDateTime.now());
-        return interestGroupRepository.save(interestGroup);
+        group.setCreatedAt(LocalDateTime.now());
+        group.setCreatedBy(currentUserId);
+
+        return interestGroupRepository.save(group);
     }
 
     public InterestGroup updateInterestGroup(Integer igId, InterestGroup updatedInterestGroup) {
@@ -48,7 +46,7 @@ public class InterestGroupService {
         if (!existingGroup.getName().equalsIgnoreCase(updatedInterestGroup.getName()) &&
                 interestGroupRepository.existsByNameIgnoreCase(updatedInterestGroup.getName())) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
+                    HttpStatus.CONFLICT,
                     "Interest Group already exists"
             );
         }
@@ -93,4 +91,8 @@ public class InterestGroupService {
         return true; // Placeholder
     }
 
+    public boolean isUserGroupOwner(Integer groupId, Integer currentUserId) {
+        InterestGroup group = getInterestGroupById(groupId);
+        return group.getCreatedBy().equals(currentUserId);
+    }
 }

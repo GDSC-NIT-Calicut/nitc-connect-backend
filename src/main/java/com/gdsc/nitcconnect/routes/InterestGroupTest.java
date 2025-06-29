@@ -25,11 +25,11 @@ public class InterestGroupTest {
         return ResponseEntity.ok(interestGroupService.getInterestGroupById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<InterestGroup> createInterestGroup(@RequestBody InterestGroup interestGroup) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(interestGroupService.createInterestGroup(interestGroup));
-    }
+//    @PostMapping
+//    public ResponseEntity<InterestGroup> createInterestGroup(@RequestBody InterestGroup interestGroup) {
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                .body(interestGroupService.createInterestGroup(interestGroup));
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<InterestGroup> updateInterestGroup(@PathVariable Integer id, @RequestBody InterestGroup interestGroup) {
