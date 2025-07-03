@@ -1,6 +1,7 @@
 package com.gdsc.nitcconnect.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,8 +18,17 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String googleId;
+    @Column(nullable = true, unique = true)
+    private String googleId; // Nullable for email+password users
+
+    @Column(nullable = true)
+    private String password; // Nullable for Google login users
+
+    @Column(nullable = true)
+    private String email2FACode;
+
+    @Column(nullable = true)
+    private LocalDateTime email2FACodeExpiry;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -26,11 +36,19 @@ public class User {
     // Default constructor
     public User() {}
 
-    // Constructor
+    // Constructor for Google login
     public User(String name, String email, String googleId) {
         this.name = name;
         this.email = email;
         this.googleId = googleId;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // Constructor for email+password login
+    public User(String name, String email, String password, boolean isEmailUser) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -65,6 +83,30 @@ public class User {
 
     public void setGoogleId(String googleId) {
         this.googleId = googleId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail2FACode() {
+        return email2FACode;
+    }
+
+    public void setEmail2FACode(String email2FACode) {
+        this.email2FACode = email2FACode;
+    }
+
+    public LocalDateTime getEmail2FACodeExpiry() {
+        return email2FACodeExpiry;
+    }
+
+    public void setEmail2FACodeExpiry(LocalDateTime email2FACodeExpiry) {
+        this.email2FACodeExpiry = email2FACodeExpiry;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/api/**") // Ignore CSRF for API if needed
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/error", "/login**", "/oauth2/**").permitAll()
+                        .requestMatchers("/", "/error", "/login**", "/oauth2/**", "/register","/auth/email/login", "/auth/email/verify").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
