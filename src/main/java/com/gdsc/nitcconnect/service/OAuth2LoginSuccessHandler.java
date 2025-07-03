@@ -47,9 +47,18 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         cookie.setHttpOnly(true);
         cookie.setSecure(true); // Requires HTTPS
         cookie.setPath("/");
-        cookie.setMaxAge(7 * 24 * 60 * 60); // Optional: 1 week
+        cookie.setMaxAge(7 * 24 * 60 * 60); // 1 week
 
         response.addCookie(cookie);
+
+        // passwordSet Cookie
+        boolean passwordSet = user.getPassword() != null;
+        Cookie flagCookie = new Cookie("passwordSet", String.valueOf(passwordSet));
+        flagCookie.setHttpOnly(false); // Frontend needs access
+        flagCookie.setSecure(true);    // Only sent over HTTPS
+        flagCookie.setPath("/");
+        flagCookie.setMaxAge(60);      // 1 minute lifespan
+        response.addCookie(flagCookie);
 
         // ✅ Redirect after login
         response.sendRedirect("/");
